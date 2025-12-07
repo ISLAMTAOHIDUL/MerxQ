@@ -1,16 +1,10 @@
 #include "../include/utils.h"
+#include <chrono>
 #include <cstdlib>
 #include <iostream>
 #include <limits>
 #include <map>
-
-#ifdef _WIN32
-#include <windows.h>
-#define SLEEP_MS(ms) Sleep(ms)
-#else
-#include <unistd.h>
-#define SLEEP_MS(ms) usleep((ms) * 1000)
-#endif
+#include <thread>
 
 using namespace std;
 
@@ -117,7 +111,7 @@ void Utils::showLoading(const string &message, int seconds) {
 
   for (int i = 0; i < seconds * 2; i++) {
     cout << colorText(".", "yellow") << flush;
-    SLEEP_MS(500); // Sleep for 0.5 seconds
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
   }
 
   cout << endl;
