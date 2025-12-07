@@ -41,7 +41,8 @@ void Application::run() {
   }
 
   cout << endl;
-  cout << Utils::colorText("Thank you for using MerxQ! 👋", "cyan", "", "bold")
+  cout << Utils::colorText("Thank you for using MerxQ! 👋", "yellow", "",
+                           "bold")
        << endl;
   cout << Utils::colorText("Have a great day!", "green") << endl << endl;
 }
@@ -52,23 +53,15 @@ void Application::run() {
 
 void Application::showMainMenu() {
   cout << Utils::colorText("Welcome to MerxQ!", "green", "", "bold") << endl;
-  cout << Utils::colorText("Your online shopping solution", "cyan") << endl
+  cout << Utils::colorText("Your online shopping solution", "yellow") << endl
        << endl;
 
-  cout << Utils::colorText("┌─────────────────────────────┐", "white") << endl;
-  cout << Utils::colorText("│", "white") << "       "
-       << Utils::colorText("MAIN MENU", "yellow", "", "bold") << "            "
-       << Utils::colorText("│", "white") << endl;
-  cout << Utils::colorText("├─────────────────────────────┤", "white") << endl;
-  cout << Utils::colorText("│", "white") << " 1. Login                    "
-       << Utils::colorText("│", "white") << endl;
-  cout << Utils::colorText("│", "white") << " 2. Register                 "
-       << Utils::colorText("│", "white") << endl;
-  cout << Utils::colorText("│", "white") << " 3. Browse Products (Guest)  "
-       << Utils::colorText("│", "white") << endl;
-  cout << Utils::colorText("│", "white") << " 0. Exit                     "
-       << Utils::colorText("│", "white") << endl;
-  cout << Utils::colorText("└─────────────────────────────┘", "white") << endl;
+  cout << Utils::colorText("MAIN MENU", "yellow", "", "bold") << endl << endl;
+  cout << Utils::colorText("1.", "yellow", "", "bold") << " Login" << endl;
+  cout << Utils::colorText("2.", "yellow", "", "bold") << " Register" << endl;
+  cout << Utils::colorText("3.", "yellow", "", "bold")
+       << " Browse Products (Guest)" << endl;
+  cout << Utils::colorText("0.", "red", "", "bold") << " Exit" << endl << endl;
 
   int choice = Utils::getIntInput("Choose option: ", 0, 3);
 
@@ -90,32 +83,27 @@ void Application::showMainMenu() {
 
 void Application::showCustomerMenu() {
   cout << Utils::colorText("Logged in as: ", "white")
-       << Utils::colorText(currentUser->getName(), "cyan", "", "bold") << endl
+       << Utils::colorText(currentUser->getName(), "yellow", "", "bold") << endl
        << endl;
 
-  cout << Utils::colorText("┌─────────────────────────────┐", "green") << endl;
-  cout << Utils::colorText("│", "green") << "     "
-       << Utils::colorText("CUSTOMER MENU", "yellow", "", "bold") << "         "
-       << Utils::colorText("│", "green") << endl;
-  cout << Utils::colorText("├─────────────────────────────┤", "green") << endl;
-  cout << Utils::colorText("│", "green") << " 1. Browse Products          "
-       << Utils::colorText("│", "green") << endl;
-  cout << Utils::colorText("│", "green") << " 2. Search Products          "
-       << Utils::colorText("│", "green") << endl;
-  cout << Utils::colorText("│", "green") << " 3. Add to Cart              "
-       << Utils::colorText("│", "green") << endl;
-  cout << Utils::colorText("│", "green") << " 4. View Cart ("
-       << currentCart.getTotalQuantity() << " items)       "
-       << Utils::colorText("│", "green") << endl;
-  cout << Utils::colorText("│", "green") << " 5. Checkout                 "
-       << Utils::colorText("│", "green") << endl;
-  cout << Utils::colorText("│", "green") << " 6. Order History            "
-       << Utils::colorText("│", "green") << endl;
-  cout << Utils::colorText("│", "green") << " 7. My Profile               "
-       << Utils::colorText("│", "green") << endl;
-  cout << Utils::colorText("│", "green") << " 0. Logout                   "
-       << Utils::colorText("│", "green") << endl;
-  cout << Utils::colorText("└─────────────────────────────┘", "green") << endl;
+  cout << Utils::colorText("CUSTOMER MENU", "yellow", "", "bold") << endl
+       << endl;
+  cout << Utils::colorText("1.", "green", "", "bold") << " Browse Products"
+       << endl;
+  cout << Utils::colorText("2.", "green", "", "bold") << " Search Products"
+       << endl;
+  cout << Utils::colorText("3.", "green", "", "bold") << " Add to Cart" << endl;
+  cout << Utils::colorText("4.", "green", "", "bold") << " View Cart "
+       << Utils::colorText("(" + to_string(currentCart.getTotalQuantity()) +
+                               " items)",
+                           "yellow")
+       << endl;
+  cout << Utils::colorText("5.", "green", "", "bold") << " Checkout" << endl;
+  cout << Utils::colorText("6.", "green", "", "bold") << " Order History"
+       << endl;
+  cout << Utils::colorText("7.", "green", "", "bold") << " My Profile" << endl;
+  cout << Utils::colorText("0.", "red", "", "bold") << " Logout" << endl
+       << endl;
 
   int choice = Utils::getIntInput("Choose option: ", 0, 7);
 
@@ -149,34 +137,25 @@ void Application::showCustomerMenu() {
 
 void Application::showAdminMenu() {
   cout << Utils::colorText("Admin: ", "white")
-       << Utils::colorText(currentUser->getName(), "magenta", "", "bold")
-       << endl
+       << Utils::colorText(currentUser->getName(), "yellow", "", "bold") << endl
        << endl;
 
-  cout << Utils::colorText("┌─────────────────────────────┐", "magenta")
+  cout << Utils::colorText("ADMIN PANEL", "yellow", "", "bold") << endl << endl;
+  cout << Utils::colorText("1.", "yellow", "", "bold") << " View Inventory"
        << endl;
-  cout << Utils::colorText("│", "magenta") << "       "
-       << Utils::colorText("ADMIN PANEL", "yellow", "", "bold") << "          "
-       << Utils::colorText("│", "magenta") << endl;
-  cout << Utils::colorText("├─────────────────────────────┤", "magenta")
+  cout << Utils::colorText("2.", "yellow", "", "bold") << " Add Product"
        << endl;
-  cout << Utils::colorText("│", "magenta") << " 1. View Inventory           "
-       << Utils::colorText("│", "magenta") << endl;
-  cout << Utils::colorText("│", "magenta") << " 2. Add Product              "
-       << Utils::colorText("│", "magenta") << endl;
-  cout << Utils::colorText("│", "magenta") << " 3. Update Product           "
-       << Utils::colorText("│", "magenta") << endl;
-  cout << Utils::colorText("│", "magenta") << " 4. Delete Product           "
-       << Utils::colorText("│", "magenta") << endl;
-  cout << Utils::colorText("│", "magenta") << " 5. View All Orders          "
-       << Utils::colorText("│", "magenta") << endl;
-  cout << Utils::colorText("│", "magenta") << " 6. Update Order Status      "
-       << Utils::colorText("│", "magenta") << endl;
-  cout << Utils::colorText("│", "magenta") << " 7. View All Users           "
-       << Utils::colorText("│", "magenta") << endl;
-  cout << Utils::colorText("│", "magenta") << " 0. Logout                   "
-       << Utils::colorText("│", "magenta") << endl;
-  cout << Utils::colorText("└─────────────────────────────┘", "magenta")
+  cout << Utils::colorText("3.", "yellow", "", "bold") << " Update Product"
+       << endl;
+  cout << Utils::colorText("4.", "yellow", "", "bold") << " Delete Product"
+       << endl;
+  cout << Utils::colorText("5.", "yellow", "", "bold") << " View All Orders"
+       << endl;
+  cout << Utils::colorText("6.", "yellow", "", "bold") << " Update Order Status"
+       << endl;
+  cout << Utils::colorText("7.", "yellow", "", "bold") << " View All Users"
+       << endl;
+  cout << Utils::colorText("0.", "red", "", "bold") << " Logout" << endl
        << endl;
 
   int choice = Utils::getIntInput("Choose option: ", 0, 7);
@@ -268,7 +247,8 @@ void Application::registerCustomer() {
 
     cout << Utils::colorText("✓ Registration successful!", "green", "", "bold")
          << endl;
-    cout << Utils::colorText("You can now login with your credentials.", "cyan")
+    cout << Utils::colorText("You can now login with your credentials.",
+                             "yellow")
          << endl;
     Utils::pauseScreen();
   } catch (const exception &e) {
@@ -297,7 +277,7 @@ void Application::displayProductList() const {
   cout << endl;
   cout << Utils::colorText("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                            "━━━━━━━━━━━━━━",
-                           "cyan")
+                           "yellow")
        << endl;
   cout << Utils::colorText(
               " ID     │ Name                      │ Price      │ Stock",
@@ -305,7 +285,7 @@ void Application::displayProductList() const {
        << endl;
   cout << Utils::colorText("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                            "━━━━━━━━━━━━━━",
-                           "cyan")
+                           "yellow")
        << endl;
 
   for (const Product &p : products) {
@@ -313,7 +293,7 @@ void Application::displayProductList() const {
   }
   cout << Utils::colorText("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                            "━━━━━━━━━━━━━━",
-                           "cyan")
+                           "yellow")
        << endl;
 }
 
@@ -333,15 +313,31 @@ void Application::searchProducts() {
 
   string query = Utils::getStringInput("Search term: ");
 
+  // Convert query to lowercase for case-insensitive search
+  string queryLower = query;
+  for (char &c : queryLower)
+    c = tolower(c);
+
   cout << endl;
   cout << Utils::colorText("Search results for: ", "white")
        << Utils::colorText(query, "yellow", "", "bold") << endl;
 
   bool found = false;
   for (const Product &p : products) {
-    if (p.getName().find(query) != string::npos ||
-        p.getCategory().find(query) != string::npos ||
-        p.getDescription().find(query) != string::npos) {
+    // Convert product fields to lowercase for comparison
+    string nameLower = p.getName();
+    string catLower = p.getCategory();
+    string descLower = p.getDescription();
+    for (char &c : nameLower)
+      c = tolower(c);
+    for (char &c : catLower)
+      c = tolower(c);
+    for (char &c : descLower)
+      c = tolower(c);
+
+    if (nameLower.find(queryLower) != string::npos ||
+        catLower.find(queryLower) != string::npos ||
+        descLower.find(queryLower) != string::npos) {
       p.displayShort();
       found = true;
     }
@@ -513,7 +509,7 @@ void Application::viewInventory() {
   products = FileManager::loadProducts();
 
   cout << Utils::colorText("Total Products: " + to_string(products.size()),
-                           "cyan")
+                           "yellow")
        << endl;
   displayProductList();
 
@@ -638,7 +634,8 @@ void Application::viewAllOrders() {
     return;
   }
 
-  cout << Utils::colorText("Total Orders: " + to_string(orders.size()), "cyan")
+  cout << Utils::colorText("Total Orders: " + to_string(orders.size()),
+                           "yellow")
        << endl
        << endl;
 
@@ -730,15 +727,15 @@ void Application::viewAllUsers() {
     return;
   }
 
-  cout << Utils::colorText("Total Users: " + to_string(users.size()), "cyan")
+  cout << Utils::colorText("Total Users: " + to_string(users.size()), "yellow")
        << endl
        << endl;
 
   for (const auto &user : users) {
-    string roleColor = user->getRole() == "admin" ? "magenta" : "green";
+    string roleColor = user->getRole() == "admin" ? "yellow" : "green";
     cout << Utils::colorText("[" + to_string(user->getId()) + "]", "yellow")
          << " " << Utils::colorText(user->getName(), "white", "", "bold")
-         << " | " << Utils::colorText(user->getEmail(), "cyan") << " | "
+         << " | " << Utils::colorText(user->getEmail(), "yellow") << " | "
          << Utils::colorText("[" + user->getRole() + "]", roleColor) << endl;
   }
 

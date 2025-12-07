@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <sstream>
 
-using json = nlohmann::json;
+using json = nlohmann::ordered_json;
 
 // ============================================
 // FILE PATHS
@@ -212,25 +212,29 @@ void FileManager::saveUsers(const vector<shared_ptr<User>> &users) {
     json j = json::array();
 
     for (const auto &user : users) {
-      json userJson = {{"id", user->getId()},
-                       {"name", user->getName()},
-                       {"email", user->getEmail()},
-                       {"role", user->getRole()}};
+      json userJson;
+
+      // Common fields first in logical order
+      userJson["id"] = user->getId();
+      userJson["name"] = user->getName();
+      userJson["email"] = user->getEmail();
 
       // Add role-specific fields
       if (user->getRole() == "admin") {
         Admin *admin = dynamic_cast<Admin *>(user.get());
         if (admin) {
+          userJson["password"] = user->getPassword();
+          userJson["role"] = "admin";
           userJson["department"] = admin->getDepartment();
           userJson["superAdmin"] = admin->isSuperAdmin();
-          userJson["password"] = "admin123"; // Preserve password
         }
       } else {
         Customer *customer = dynamic_cast<Customer *>(user.get());
         if (customer) {
-          userJson["address"] = customer->getAddress();
+          userJson["password"] = user->getPassword();
+          userJson["role"] = "customer";
           userJson["phone"] = customer->getPhone();
-          userJson["password"] = "pass123"; // Default password
+          userJson["address"] = customer->getAddress();
         }
       }
 
