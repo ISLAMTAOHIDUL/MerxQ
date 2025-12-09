@@ -7,17 +7,13 @@
 
 using namespace std;
 
-// ============================================
-// CUSTOMER CLASS (Derived from User)
-// ============================================
-// Demonstrates: Inheritance, Method Overriding
-
+// Customer class - inherits from User
 class Customer : public User {
 private:
   string address;
   string phone;
-  vector<int> cartProductIds; // Cart stores product IDs
-  vector<int> orderIds;       // Past order IDs
+  vector<int> cartProductIds;
+  vector<int> orderIds;
 
 public:
   // Constructor
@@ -25,19 +21,11 @@ public:
            const string &password, const string &address = "",
            const string &phone = "");
 
-  // ============================================
-  // OVERRIDE PURE VIRTUAL (Required)
-  // ============================================
+  // Override parent functions
   void displayMenu() override;
-
-  // ============================================
-  // OVERRIDE VIRTUAL FUNCTIONS
-  // ============================================
   void displayInfo() const override;
 
-  // ============================================
-  // CUSTOMER-SPECIFIC METHODS
-  // ============================================
+  // Customer features
   void browseProducts();
   void addToCart(int productId);
   void removeFromCart(int productId);
@@ -46,14 +34,13 @@ public:
   void placeOrder();
   void viewOrderHistory() const;
 
-  // ============================================
-  // GETTERS & SETTERS
-  // ============================================
+  // Getters
   string getAddress() const { return address; }
   string getPhone() const { return phone; }
   vector<int> getCart() const { return cartProductIds; }
   int getCartSize() const { return cartProductIds.size(); }
 
+  // Setters
   void setAddress(const string &newAddress);
   void setPhone(const string &newPhone);
 };

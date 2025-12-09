@@ -7,11 +7,7 @@
 
 using namespace std;
 
-// ============================================
-// USER BASE CLASS (Abstract)
-// ============================================
-// Demonstrates: Inheritance, Polymorphism, Encapsulation
-
+// Base class for all users (Customer and Admin inherit from this)
 class User {
 protected:
   int id;
@@ -25,32 +21,24 @@ public:
   User(int id, const string &name, const string &email, const string &password,
        const string &role);
 
-  // Virtual destructor for proper polymorphism
+  // Virtual destructor for proper cleanup
   virtual ~User() = default;
 
-  // ============================================
-  // PURE VIRTUAL FUNCTIONS (Must be implemented by derived classes)
-  // ============================================
-  virtual void displayMenu() = 0; // Makes User abstract
+  // Pure virtual - makes this class abstract
+  virtual void displayMenu() = 0;
 
-  // ============================================
-  // VIRTUAL FUNCTIONS (Can be overridden)
-  // ============================================
+  // Virtual functions - can be overridden by child classes
   virtual void displayInfo() const;
   virtual bool authenticate(const string &inputPassword) const;
 
-  // ============================================
-  // GETTERS (Encapsulation)
-  // ============================================
+  // Getters
   int getId() const { return id; }
   string getName() const { return name; }
   string getEmail() const { return email; }
   string getPassword() const { return password; }
   string getRole() const { return role; }
 
-  // ============================================
-  // SETTERS (Encapsulation with validation)
-  // ============================================
+  // Setters
   void setName(const string &newName);
   void setEmail(const string &newEmail);
   void setPassword(const string &newPassword);

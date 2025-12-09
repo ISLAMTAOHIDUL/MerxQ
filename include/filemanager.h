@@ -11,22 +11,15 @@
 
 using namespace std;
 
-// ============================================
-// FILE MANAGER CLASS (Static)
-// ============================================
-// Handles JSON file I/O for data persistence
-
+// Handles reading and writing JSON files
 class FileManager {
 private:
-  // File paths
   static const string PRODUCTS_FILE;
   static const string USERS_FILE;
   static const string ORDERS_FILE;
 
 public:
-  // ============================================
-  // PRODUCTS
-  // ============================================
+  // Product functions
   static vector<Product> loadProducts();
   static void saveProducts(const vector<Product> &products);
   static Product findProduct(const string &productId);
@@ -34,9 +27,7 @@ public:
   static void deleteProduct(const string &productId);
   static string generateProductId();
 
-  // ============================================
-  // USERS
-  // ============================================
+  // User functions
   static vector<shared_ptr<User>> loadUsers();
   static void saveUsers(const vector<shared_ptr<User>> &users);
   static shared_ptr<User> findUserByEmail(const string &email);
@@ -44,9 +35,7 @@ public:
   static void addUser(shared_ptr<User> user);
   static int generateUserId();
 
-  // ============================================
-  // ORDERS
-  // ============================================
+  // Order functions
   static vector<Order> loadOrders();
   static void saveOrders(const vector<Order> &orders);
   static vector<Order> getCustomerOrders(int customerId);
@@ -54,9 +43,7 @@ public:
   static void updateOrderStatus(const string &orderId, OrderStatus status);
   static string generateOrderId();
 
-  // ============================================
-  // UTILITY
-  // ============================================
+  // Utility
   static bool fileExists(const string &filename);
   static void ensureDataDirectory();
 };
